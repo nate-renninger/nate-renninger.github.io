@@ -9,16 +9,18 @@
   <h3>This is a heading</h3>
   <p>This is a paragraph.</p>
 </div>
-<script src="three.min.js"></script>
-<script src="GLTFLoader.js"></script>
+
+<script src="assets/three.min.js"></script>
+<script src="assets/GLTFLoader.js"></script>
 
 <script>
+
 //basic setup
 let scene, camera, renderer;
 
 function init()
  scene=new THREE.Scene();
- scene.background = new THREE.color(0000000);
+ scene.background = new THREE.color(000000);
  //controls camera
  camera = new THREE.PerspectiveCamera(40.window.innerWidth/window.innerHeight,1,5000);
  //controls scene light
@@ -30,7 +32,7 @@ function init()
  document.body.appendChild(renderer.domElement);
  
  let loader = new THREE.GLTFLoader();
- loader.load('3js-cube-test1.gltf', function(gltf){
+ loader.load('assets/3js-cube-test1.gltf', function(gltf){
  scene.add(gltf.scene);
  renderer.render(scene,camera);
  });
