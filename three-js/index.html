@@ -11,7 +11,7 @@
   <p>This is a paragraph.</p>
 </div>
 
-<script src="/assets/three.min.js">//calls the three.js functionality</script> 
+<script src="/assets/three.js">//calls the three.js functionality</script> 
 
 <script>
 //Strings are text, written within double or single quotes
@@ -23,7 +23,6 @@
 //init is the name of the function. this can be anything you want
 
 var scene = new THREE.Scene(); //setup of scene for three.js
-var scene.background = new THREE.color(000000); //setup of scene background for three.js
 var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); //setup of camera
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
@@ -33,7 +32,7 @@ var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight
 //scene.add(hlight);
 
 //controls renderer
-var renderer = new THREE.WebGLRenderer({antialias:true});
+var renderer = new THREE.WebGLRenderer();
 //Creating the renderer instance, 
 
 renderer.setSize(window.innerWidth,window.innerHeight);
