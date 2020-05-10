@@ -5,38 +5,64 @@
 		<link rel = "stylesheet" type="text/css" href="stylesheet.css"/>
 		</head>
 		<body>
+
 			<div style="background-color:lightblue">
   <h3>This is a heading</h3>
   <p>This is a paragraph.</p>
 </div>
 
-<script src="assets/three.min.js"></script>
-<script src="assets/GLTFLoader.js"></script>
+<script src="/assets/three.min.js">//calls the three.js functionality</script> 
 
 <script>
-
+//Strings are text, written within double or single quotes
+//Numbers are written without quotes
 //basic setup
-let scene, camera, renderer;
+//let scene, camera, renderer;
 
-function init()
- scene=new THREE.Scene();
- scene.background = new THREE.color(000000);
- //controls camera
- camera = new THREE.PerspectiveCamera(40.window.innerWidth/window.innerHeight,1,5000);
- //controls scene light
- hlight = new THREE.AmbientLight(0x404040,100);
- scene.add(hlight);
- //controls renderer
- renderer= new THREE.WebGLRenderer({antialias:true});
- renderer= setSize(window.innerWidth,window.innerHeight);
- document.body.appendChild(renderer.domElement);
+//function init()
+//init is the name of the function. this can be anything you want
+
+var scene = new THREE.Scene(); //setup of scene for three.js
+var scene.background = new THREE.color(000000); //setup of scene background for three.js
+var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); //setup of camera
+// the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
+//The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
+//The next two attributes are the near and far clipping plane (ex. 1,5000)
+
+//var hlight = new THREE.AmbientLight(0x404040,100); //setup of scene light
+//scene.add(hlight);
+
+//controls renderer
+var renderer = new THREE.WebGLRenderer({antialias:true});
+//Creating the renderer instance, 
+
+renderer.setSize(window.innerWidth,window.innerHeight);
+//Setting the size at which we want it to render our app. It's a good idea to use the width and height of the area we want to fill with our app
+
+document.body.appendChild(renderer.domElement);
+//Last but not least, we add the renderer element to our HTML document. This is a <canvas> element the renderer uses to display the scene to us.
  
- let loader = new THREE.GLTFLoader();
- loader.load('assets/3js-cube-test1.gltf', function(gltf){
- scene.add(gltf.scene);
- renderer.render(scene,camera);
- });
- inti ();
+ //let loader = new THREE.GLTFLoader();
+ //loader.load('assets/3js-cube-test1.gltf', function(gltf){
+ //scene.add(gltf.scene);
+
+ var geometry = new THREE.BoxGeometry();
+			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 5;
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+ renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
+
+ };
+ animate ();
  </script>
  
  
