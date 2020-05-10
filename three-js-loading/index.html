@@ -34,10 +34,6 @@ var camera = new THREE.PerspectiveCamera(25,window.innerWidth/window.innerHeight
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
 camera.position.set( 1, 1, 20 );
 
-var hlight = new THREE.AmbientLight(0xffffff,100); //setup of scene light
-scene.add(hlight);
-//adds scene light
-
 var renderer = new THREE.WebGLRenderer({ alpha: false });
 //Creating the renderer instance, 
 renderer.setClearColor( 0xC5C5C3 );
@@ -62,7 +58,7 @@ scene.add( directionalLight );
 
 var loader = new THREE.GLTF2Loader(); //Creates the loader functionality
 
-loader.load("cube.gltf",function(gltf){ //loads the model
+loader.load("./three/models/Test/cube.gltf",function(gltf){ //loads the model
 	var object = gltf.scene;				
 	gltf.scene.scale.set( 2, 2, 2 );			   
 	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
