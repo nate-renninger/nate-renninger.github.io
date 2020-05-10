@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset=UTF=8/>
-		<link rel = "stylesheet" type="text/css" href="stylesheet.css"/>
+<head>
+<meta charset=UTF=8/>
+<link rel = "stylesheet" type="text/css" href="stylesheet.css"/>
 		
-		
-
-			<div style="background-color:lightblue">
-  <h3>My first three.js app</h3>
-</div>
+	<div style="background-color:lightblue">
+  	<h3>My first three.js app</h3>
+  	</div>
+  	<style>body { margin: 0; }
+		canvas { width: 100%; height: 100% }
+	</style>
 </head>
 <body>
 <script src="three.js">//calls the three.js functionality</script> 
@@ -31,6 +32,7 @@ var camera = new THREE.PerspectiveCamera(500,window.innerWidth/window.innerHeigh
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
+camera.position.set( 1, 1, 20 );
 
 var hlight = new THREE.AmbientLight(0xffffff,100); //setup of scene light
 scene.add(hlight);
@@ -48,15 +50,23 @@ document.body.appendChild(renderer.domElement);
 var loader = new THREE.GLTFLoader(); //Creates the loader functionality
 
 loader.load("cube.gltf",function(gltf){ //loads the model
+	var object = gltf.scene;				
+	gltf.scene.scale.set( 2, 2, 2 );			   
+	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
+        gltf.scene.position.y = 0;				    //Position (y = up+, down-)
+	gltf.scene.position.z = 0;	
 
 scene.add(gltf.scene);//adds model to scene
-}, undefined, function ( error ) {
 
-	console.error( error );
+ });
+
+function animate() {
+render();
+requestAnimationFrame( animate );
+}
 
 renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
 
- });
 </script>
 </body>
 </html>
