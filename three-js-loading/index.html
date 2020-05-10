@@ -27,7 +27,7 @@
 
 scene = new THREE.Scene(); //setup of scene for three.js
 scene.background = new THREE.Color(0xdddddd);
-camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,5000); //setup of camera
+camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000); //setup of camera
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
@@ -36,7 +36,7 @@ hlight = new THREE.AmbientLight(0x404040,100); //setup of scene light
 scene.add(hlight);
 //adds scene light
 
-renderer = new THREE.WebGLRenderer();
+renderer = new THREE.WebGLRenderer({antialias:true});
 //Creating the renderer instance, 
 
 renderer.setSize(window.innerWidth,window.innerHeight);
@@ -47,21 +47,15 @@ document.body.appendChild(renderer.domElement);
 
 let loader = new THREE.GLTFLoader(); //Creates the loader functionality
 
-loader.load( '3js-cube-test1.gltf', function ( gltf ) { //loads the model
+loader.load("assets/3js-cube-test1.gltf",function(gltf){ //loads the model
 
-	scene.add( gltf.scene );//adds model to scene
-
+scene.add(gltf.scene);//adds model to scene
 
 renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
 
  });
-}
-init ();
- </script>
- 
- 
-
-
-
-		</body>
-		</html>
+} 
+init();
+</script>
+</body>
+</html>
