@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=UTF=8/>
+		<link rel = "stylesheet" type="text/css" href="stylesheet.css"/>
+		
+		
+
+			<div style="background-color:lightblue">
+  <h3>My first three.js app</h3>
+</div>
+</head>
+<body>
+<script src="three.js">//calls the three.js functionality</script> 
+<script src="GLTFLoader.js"></script>
+
+<script>
+//Strings are text, written within double or single quotes
+//Numbers are written without quotes
+//basic setup
+//let scene, camera, renderer;
+
+//function init()
+//init is the name of the function. this can be anything you want
+
+var scene = new THREE.Scene(); //setup of scene for three.js
+var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); //setup of camera
+// the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
+//The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
+//The next two attributes are the near and far clipping plane (ex. 1,5000)
+
+//var hlight = new THREE.AmbientLight(0x404040,100); //setup of scene light
+//scene.add(hlight);
+
+//controls renderer
+var renderer = new THREE.WebGLRenderer();
+//Creating the renderer instance, 
+
+renderer.setSize(window.innerWidth,window.innerHeight);
+//Setting the size at which we want it to render our app. It's a good idea to use the width and height of the area we want to fill with our app
+
+document.body.appendChild(renderer.domElement);
+//Last but not least, we add the renderer element to our HTML document. This is a <canvas> element the renderer uses to display the scene to us.
+ 
+var loader = new THREE.GLTFLoader(); //Creates the loader functionality
+
+loader.load( '3js-cube-test1.gltf', function ( gltf ) { //loads the model
+
+	scene.add( gltf.scene );//adds model to scene
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+});
+
+ renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
+
+
+ animate ();
+ </script>
+ 
+ 
+
+
+
+		</body>
