@@ -13,6 +13,7 @@
 <body>
 <script src="three.js">//calls the three.js functionality</script> 
 <script src="GLTFLoader.js">//calls GLTF functionality</script>
+<script src="light.js"></script>
 
 <script>
 
@@ -25,12 +26,12 @@
 //init is the name of the function. this can be anything you want
 
 var scene = new THREE.Scene(); //setup of scene for three.js
-var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,200); //setup of camera
+var camera = new THREE.PerspectiveCamera(400,window.innerWidth/window.innerHeight,0.1,1000); //setup of camera
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
 
-var hlight = new THREE.AmbientLight(0x404040,100); //setup of scene light
+var hlight = new THREE.AmbientLight(0xffffff,100); //setup of scene light
 scene.add(hlight);
 //adds scene light
 
