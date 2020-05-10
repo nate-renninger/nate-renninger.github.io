@@ -14,7 +14,7 @@
 <body>
  <script src="three/build/three.js"></script>
 	<script src="three/js/controls/OrbitControls.js"></script>
-	<script src="https://cdn.rawgit.com/mrdoob/three.js/r85/examples/js/loaders/GLTF2Loader.js"></script>
+	<script src="three/js/loaders/GLTFLoader.js"></script>
 
 <script>
 
@@ -56,7 +56,7 @@ scene.add( directionalLight );
 
 
 
-var loader = new THREE.GLTF2Loader(); //Creates the loader functionality
+var loader = new THREE.GLTFLoader(); //Creates the loader functionality
 
 loader.load("three/models/Test/cube.gltf",function(gltf){ //loads the model
 	var object = gltf.scene;				
