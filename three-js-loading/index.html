@@ -47,7 +47,7 @@ document.body.appendChild(renderer.domElement);
 
 var loader = new THREE.GLTFLoader(); //Creates the loader functionality
 
-loader.load("cube.gltf",function(gltf){ //loads the model
+loader.load("cube.glb",function(gltf){ //loads the model
 
 scene.add(gltf.scene);//adds model to scene
 }, undefined, function ( error ) {
