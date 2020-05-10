@@ -12,9 +12,9 @@
 	</style>
 </head>
 <body>
-<script src="three.js">//calls the three.js functionality</script> 
-<script src="GLTFLoader.js">//calls GLTF functionality</script>
-<script src="light.js"></script>
+ <script src="three/build/three.js"></script>
+	<script src="three/js/controls/OrbitControls.js"></script>
+	<script src="three/js/loaders/GLTF2Loader.js"></script>
 
 <script>
 
@@ -28,7 +28,7 @@
 
 var scene = new THREE.Scene(); //setup of scene for three.js
 var scene.background = new THREE.Color(0xffffff);
-var camera = new THREE.PerspectiveCamera(500,window.innerWidth/window.innerHeight,0.1,1000); //setup of camera
+var camera = new THREE.PerspectiveCamera(25,window.innerWidth/window.innerHeight,1,20000); //setup of camera
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
@@ -38,8 +38,10 @@ var hlight = new THREE.AmbientLight(0xffffff,100); //setup of scene light
 scene.add(hlight);
 //adds scene light
 
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({ alpha: false });
 //Creating the renderer instance, 
+renderer.setClearColor( 0xC5C5C3 );
+renderer.setPixelRatio( window.devicePixelRatio );
 
 renderer.setSize(window.innerWidth,window.innerHeight);
 //Setting the size at which we want it to render our app. It's a good idea to use the width and height of the area we want to fill with our app
@@ -47,7 +49,18 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 document.body.appendChild(renderer.domElement);
 //Last but not least, we add the renderer element to our HTML document. This is a <canvas> element the renderer uses to display the scene to us.
 
-var loader = new THREE.GLTFLoader(); //Creates the loader functionality
+var controls = new THREE.OrbitControls( camera, renderer.domElement ); //load orbit controller
+
+var ambientLight = new THREE.AmbientLight( 0xcccccc );
+scene.add( ambientLight );
+
+var directionalLight = new THREE.DirectionalLight( 0xffffff );
+directionalLight.position.set( 0, 1, 1 ).normalize();
+scene.add( directionalLight );	
+
+
+
+var loader = new THREE.GLTF2Loader(); //Creates the loader functionality
 
 loader.load("cube.gltf",function(gltf){ //loads the model
 	var object = gltf.scene;				
