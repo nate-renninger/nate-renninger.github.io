@@ -64,7 +64,7 @@ loader.load("./three/models/Test/cube.gltf",function(gltf){ //loads the model
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
 	gltf.scene.position.z = 0;	
 
-scene.add(gltf.scene);//adds model toscene
+scene.add(gltf.scene);//adds model tos cene
 
  });
 
@@ -73,7 +73,9 @@ render();
 requestAnimationFrame( animate );
 }
 
+fuction render(){
 renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
+}
 
 </script>
 </body>
