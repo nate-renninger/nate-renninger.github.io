@@ -30,51 +30,46 @@ var camera = new THREE.PerspectiveCamera(25,window.innerWidth/window.innerHeight
 camera.position.set( 1, 1, 20 );
 
 var renderer = new THREE.WebGLRenderer({ alpha: false });
-//Creating the renderer instance, 
 renderer.setClearColor( 0xC5C5C3 );
 renderer.setPixelRatio( window.devicePixelRatio );
-
-renderer.setSize(window.innerWidth,window.innerHeight);
-//Setting the size at which we want it to render our app. It's a good idea to use the width and height of the area we want to fill with our app
-
+renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-//Last but not least, we add the renderer element to our HTML document. This is a <canvas> element the renderer uses to display the scene to us.
-
-var controls = new THREE.OrbitControls( camera, renderer.domElement ); //load orbit controller
-
+	
+ // Load the Orbitcontroller
+var controls = new THREE.OrbitControls( camera, renderer.domElement ); 
+			
+ // Load Light
 var ambientLight = new THREE.AmbientLight( 0xcccccc );
 scene.add( ambientLight );
-
+			
 var directionalLight = new THREE.DirectionalLight( 0xffffff );
 directionalLight.position.set( 0, 1, 1 ).normalize();
-scene.add( directionalLight );	
+scene.add( directionalLight );				
 
-
-
-var loader = new THREE.GLTFLoader(); //Creates the loader functionality
-
-loader.load("three/models/Test/cube.gltf",function(gltf){ //loads the model
+ // glTf 2.0 Loader
+var loader = new THREE.GLTF2Loader();				
+	loader.load( 'three/models/Test/cube.gltf', function ( gltf ) {              <<--------- Model Path
 	var object = gltf.scene;				
 	gltf.scene.scale.set( 2, 2, 2 );			   
 	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
         gltf.scene.position.y = 0;				    //Position (y = up+, down-)
-	gltf.scene.position.z = 0;	
-
-scene.add(gltf.scene);//adds model tos cene
-
- });
+	gltf.scene.position.z = 0;				    //Position (z = front +, back-)
+	
+	scene.add( gltf.scene );
+	});	 
 
 function animate() {
-render();
-requestAnimationFrame( animate );
-}
+	render();
+	requestAnimationFrame( animate );
+	}
 
-fuction render(){
-renderer.render(scene,camera); //this is an action that renders the above. without this, you will not see anything
-}
+function render() {
+	renderer.render( scene, camera );
+	}
+
 render();
 animate();
 
-</script>
+</script>	
 </body>
 </html>
