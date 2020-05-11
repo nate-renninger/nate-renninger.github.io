@@ -53,7 +53,7 @@ scene.add( directionalLight );
 
 var loader = new THREE.GLTFLoader(); //Creates the loader functionality
 
-loader.load("./three/models/Test/cube.gltf",function(gltf){ //loads the model
+loader.load("three/models/Test/cube.gltf",function(gltf){ //loads the model
 	var object = gltf.scene;				
 	gltf.scene.scale.set( 2, 2, 2 );			   
 	gltf.scene.position.x = 0;				    //Position (x = right+ left-) 
