@@ -9,33 +9,34 @@
 </head>
 <body>
  <script src="three.js"></script>
-	<script src="GLTFLoader.js"></script>
+<script src="GLTFLoader.js"></script>
+
 <script>
 
-let scene,camera,renderer;
+	var scene,camera,renderer;
 
 //Strings are text, written within double or single quotes
 //Numbers are written without quotes
 //basic setup
 
-function init(){
-scene = new THREE.Scene(); //setup of scene for three.js
-//function init()
-//init is the name of the function. this can be anything you want
+	function init(){
+		scene = new THREE.Scene(); //setup of scene for three.js
+	//function init()
+	//init is the name of the function. this can be anything you want
 
-camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000); //setup of camera
-// the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
-//The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
-//The next two attributes are the near and far clipping plane (ex. 1,5000)
+	camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000); //setup of camera
+	// the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
+	//The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
+	//The next two attributes are the near and far clipping plane (ex. 1,5000)
 
-hlight = new THREE.AmbientLight( 0xcccccc,100 );
-scene.add( hlight );	
- // Load Light
+	hlight = new THREE.AmbientLight( 0xcccccc,100 );
+		scene.add( hlight );	
+ 	// Load Light
 
 
-renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setSize(window.innerWidth/window.innerHeight);
-	document.body.appendChild(renderer.domElement);
+	renderer = new THREE.WebGLRenderer({antialias:true});
+		renderer.setSize(window.innerWidth/window.innerHeight);
+		document.body.appendChild(renderer.domElement);
 	
 //basic setup complete
 
@@ -49,12 +50,12 @@ renderer = new THREE.WebGLRenderer({antialias:true});
 //	render();
 
 
-let loader = new THREE.GLTFLoader();				
+var loader = new THREE.GLTFLoader();				
 	loader.load( 'scene.gltf', function ( gltf ) {
 	scene.add(gltf.scene);
 	renderer.render(scene,camera);
-	
-});
+	});
+
 }
 
 	init();
