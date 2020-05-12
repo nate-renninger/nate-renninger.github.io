@@ -12,54 +12,55 @@
 	<script src="GLTFLoader.js"></script>
 <script>
 
+let scene,camera,renderer;
+
 //Strings are text, written within double or single quotes
 //Numbers are written without quotes
 //basic setup
-//let scene, camera, renderer;
 
+function init(){
+scene = new THREE.Scene(); //setup of scene for three.js
 //function init()
 //init is the name of the function. this can be anything you want
 
-function init(){
-var scene = new THREE.Scene(); //setup of scene for three.js
-
-var camera = new THREE.PerspectiveCamera(25,window.innerWidth/window.innerHeight,1,20000); //setup of camera
+camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000); //setup of camera
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
 camera.position.set( 1, 1, 20 );
 
  // Load Light
-var ambientLight = new THREE.AmbientLight( 0xcccccc );
-scene.add( ambientLight );
-			
-var directionalLight = new THREE.DirectionalLight( 0xffffff );
-directionalLight.position.set( 0, 1, 1 ).normalize();
-scene.add( directionalLight );				
+hlight = new THREE.AmbientLight( 0xcccccc,100 );
+scene.add( hlight );			
 
  // glTf 2.0 Loader 
-var loader = new THREE.GLTFLoader();				
-	loader.load( 'cube.gltf', function ( gltf ) {
-	var object = gltf.scene;				
-	
 
-	var renderer = new THREE.WebGLRenderer();
-document.body.appendChild(renderer.domElement);
+renderer = new THREE.WebGLRenderer({antialias:true});
+	renderer.setSize(window.innerWidth/window.innerHeight);
+	document.body.appendChild(renderer.domElement);
 	
- // Load the Orbitcontroller
+//basic setup complete
+
+ 
 //var controls = new THREE.OrbitControls( camera, renderer.domElement ); }		
+// Load the Orbitcontroller
+
 
 //function animate() {
 //	requestAnimationFrame( animate );
 //	render();
 
-//}
 
-function render() {
+let loader = new THREE.GLTFLoader();				
+	loader.load( 'scene.gltf', function ( gltf ) {
+	scene.add(gltf.scene);
 	renderer.render( scene, camera );
-	};
-
+	
 });
+
+	init();
+
+
 </script>	
 </body>
 </html>
