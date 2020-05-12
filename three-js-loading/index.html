@@ -51,7 +51,7 @@ var loader = new THREE.GLTFLoader();
 	loader.load('cube.glb', handle_load);
 
 var mesh;
-functional handle_load(gltf){
+function handle_load(gltf){
 mesh = gltf.scene.children[0];
 scene.add(mesh);
 mesh.position.z = -10;
