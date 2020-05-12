@@ -27,13 +27,11 @@ camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5
 // the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
 //The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
 //The next two attributes are the near and far clipping plane (ex. 1,5000)
-camera.position.set( 1, 1, 20 );
 
- // Load Light
 hlight = new THREE.AmbientLight( 0xcccccc,100 );
-scene.add( hlight );			
+scene.add( hlight );	
+ // Load Light
 
- // glTf 2.0 Loader 
 
 renderer = new THREE.WebGLRenderer({antialias:true});
 	renderer.setSize(window.innerWidth/window.innerHeight);
@@ -54,9 +52,10 @@ renderer = new THREE.WebGLRenderer({antialias:true});
 let loader = new THREE.GLTFLoader();				
 	loader.load( 'scene.gltf', function ( gltf ) {
 	scene.add(gltf.scene);
-	renderer.render( scene, camera );
+	renderer.render(scene,camera);
 	
 });
+}
 
 	init();
 
