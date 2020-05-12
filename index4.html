@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>____________glTF2_Loader__________</title>
+        <style>
+		body { margin: 0; overflow:hidden; }
+      </style>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+
+ <script src="three.js"></script>
+<script src="GLTFLoader.js"></script>
+
+<script>
+var renderer,scene,camera,myCanvas = document.getElementById('myCanvas');
+//Strings are text, written within double or single quotes
+//Numbers are written without quotes
+//basic setup
+//let scene, camera, renderer;
+
+//function init()
+//init is the name of the function. this can be anything you want
+renderer = new THREE.WebGLRenderer({
+	canvas: myCanvas,
+	antialias:true
+});
+
+renderer.setClearColor( 0xC5C5C3 );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight,0.1,1000); //setup of camera
+
+
+scene = new THREE.Scene(); //setup of scene for three.js
+
+// the first parameter is the field of view (ex.40). FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
+//The second one is the aspect ratio You almost always want to use the width of the element divided by the height.(ex.inner.Width, inner.Height)
+//The next two attributes are the near and far clipping plane (ex. 1,5000)
+
+ // Load Light
+var light = new THREE.AmbientLight( 0xcccccc,0,5 );
+scene.add(light);
+			
+var light2 = new THREE.PointLight( 0xffffff,0.5 );
+scene.add( light2 );				
+
+ // glTf 2.0 Loader 
+var loader = new THREE.GLTFLoader();				
+	loader.load('cube.gltf', handle_load);
+
+
+var mesh;
+function handle_load(gltf){
+mesh = gltf.scene.children[0];
+scene.add(mesh);
+mesh.position.z = -10;
+
+}
+	render();
+	var delta = 0;
+	var prevTime = Date.now();
+			
+
+function render() {
+
+	delta += 0.1;
+
+	if (mesh) {
+		mesh.rotation.y += 0.01;
+
+	}
+	renderer.render( scene, camera );
+	requestAnimationFrame(render);
+
+	}
+
+</script>	
+</body>
+</html>
